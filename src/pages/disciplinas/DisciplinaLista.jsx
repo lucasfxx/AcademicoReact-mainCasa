@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Table } from 'react-bootstrap';
-import { FaPlus } from 'react-icons/fa';
+import { BsPencilFill} from 'react-icons/bs';
+import { FaPlus} from 'react-icons/fa';
+import { AiTwotoneDelete} from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import DisciplinaService from '../../services/academico/DisciplinaService';
 
@@ -14,7 +16,13 @@ const DisciplinaLista = () => {
         setDisciplinas(DisciplinaService.getAll())
         }, [])
 
-        console.log(disciplinas);
+        function apagar(id){
+        if(window.confirm("Tem certeza?"))
+        DisciplinaService.delete(id)
+        setDisciplinas(DisciplinaService.getAll())
+        }
+
+        
     
   return (
     <div> 
@@ -34,7 +42,12 @@ const DisciplinaLista = () => {
                 <tbody>
                     {disciplinas.map((item, i) => (
                         <tr key={i}>
-                            <td>{i}</td>
+                            <td>
+                               <Link to={'/disciplinas/' + i}><BsPencilFill /></Link>{''}
+
+                                <AiTwotoneDelete onClick={()=>apagar(i)} className='text-danger' />
+
+                                            </td>
                             <td>{item.nome}</td>
                             <td>{item.curso}</td>
                         </tr>

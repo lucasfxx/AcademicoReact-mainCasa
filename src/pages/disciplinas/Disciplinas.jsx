@@ -1,22 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form';
 import { FaCheck } from 'react-icons/fa'
 import { BsArrowLeft } from 'react-icons/bs'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import DisciplinaService from '../../services/academico/DisciplinaService';
 import disciplinaValidator from '../../validadors/disciplinaValidator';
 
 
 
-const Disciplinas = () => {
-
+  const Disciplinas = () => {
+  const params = useParams()
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+  
+  useEffect(() => {
+      if (params.id) {
+      const disciplina = DisciplinaService.get(params.id)
+
+      for (let campo in disciplina) {
+        setValue(campo, disciplina[campo])
+      }
+    }
+  }, [])
 
   function salvar(dados) {
-    
-    DisciplinaService.create(dados)
+
+
+    if(params.id){
+      DisciplinaService.update(params.id, dados)
+    } else {
+      DisciplinaService.create(dados)
+    }
+  
     Navigate('/disciplinas')
     
   }

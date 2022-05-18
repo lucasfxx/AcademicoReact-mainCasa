@@ -22,6 +22,7 @@ function App() {
             <Route path="/cursos/form" element={<CursosForm />} />
             <Route path="/disciplinas" element={<DisciplinaLista />} />
             <Route path="/disciplinas/create" element={<Disciplinas />} />
+            <Route path="/disciplinas/:id" element={<Disciplinas />} />
             <Route path="/professores" element={<ProfessorLista />} />
             <Route path="/professores/create" element={<Professores />} />
             </Routes>

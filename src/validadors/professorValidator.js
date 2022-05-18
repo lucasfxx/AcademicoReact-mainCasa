@@ -30,7 +30,127 @@ const professorValidator = {
             message: "O valor mínimo é 3"
         },
     },
-    Matricula: {
+    matricula: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    salario: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    email: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    telefone: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    cep: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    logadouro: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    complemento: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    numero: {
+        
+        minLength: {
+            value: 20,
+            message: "Qtd mínima de caracteres não informado"
+        },
+        maxLength: {
+            value: 25,
+            message: "Qtd máxima de caracteres ultrapassada"
+        },
+        min: {
+            value: 20,
+            message: "O valor mínimo é 20"
+        },
+    },
+    bairro: {
         
         minLength: {
             value: 20,

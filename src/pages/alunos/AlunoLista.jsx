@@ -76,5 +76,4 @@ const ProfessorLista = () => {
     </div>
   )
 }
-
-export default ProfessorLista
+export default AlunoLista
