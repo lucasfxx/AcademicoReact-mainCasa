@@ -3,22 +3,23 @@ import { Table } from "react-bootstrap"
 import { AiTwotoneDelete } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import { FaPlus } from 'react-icons/fa';
+import { BiCool} from 'react-icons/bi';
 import { Link } from "react-router-dom"
-import ProfessorService from "../../services/academico/ProfessorService"
+import AlunoService from "../../services/academico/AlunoService"
 
-const ProfessorLista = () => {
+const AlunoLista = () => {
 
-    const[professores, setProfessores] = useState([])
+    const[alunos, setAlunos] = useState([])
 
     useEffect(()=>{
 
-        setProfessores(ProfessorService.getAll())
+        setAlunos(AlunoService.getAll())
         }, [])
 
         function apagar(id){
             if(window.confirm("Tem certeza?"))
-            ProfessorService.delete(id)
-            setProfessores(ProfessorService.getAll())
+            AlunoService.delete(id)
+            setAlunos(AlunoService.getAll())
             }
     
 
@@ -26,18 +27,17 @@ const ProfessorLista = () => {
     
   return (
     <div> 
-        <h1>Professores</h1>
+        <h1>Alunos</h1>
 
-        <Link className='btn btn-info mb-3' to={'/professores/create'}><FaPlus /> Novo</Link>
+        <Link className='btn btn-info mb-3' to={'/alunos/create'}><FaPlus /> Novo</Link>
 
         <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th><BiCool/></th>
                         <th>Nome</th>
                         <th>Cpf</th>
                         <th>Matricula</th>
-                        <th>Salario</th>
                         <th>Email</th>
                         <th>Telefone</th>
                         <th>Cep</th>
@@ -49,16 +49,16 @@ const ProfessorLista = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {professores.map((item, i) => (
+                    {alunos.map((item, i) => (
                         <tr key={i}>
-                            <td> <BsPencilFill />{''}
+                            <td>  
+                                <Link to={'/alunos/' + i}><BsPencilFill /></Link>{''}
 
                             <AiTwotoneDelete onClick={()=>apagar(i)} className='text-danger' />
                             </td>
                             <td>{item.nome}</td>
                             <td>{item.cpf}</td>
                             <td>{item.matricula}</td>
-                            <td>{item.salario}</td>
                             <td>{item.email}</td>
                             <td>{item.telefone}</td>
                             <td>{item.cep}</td>

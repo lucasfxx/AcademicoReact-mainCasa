@@ -4,22 +4,22 @@ import { useForm } from 'react-hook-form';
 import { FaCheck } from 'react-icons/fa'
 import { BsArrowLeft } from 'react-icons/bs'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import CursoService from '../../services/academico/CursoService';
-import cursoValidator from '../../validadors/cursoValidator';
+import SalaService from '../../services/academico/SalaService';
+import salaValidator from '../../validadors/salaValidator';
 
 
 
-  const Cursos = () => {
+  const Salas = () => {
   const params = useParams()
   const navigate = useNavigate()
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   
   useEffect(() => {
       if (params.id) {
-      const curso = CursoService.get(params.id)
+      const sala = SalaService.get(params.id)
 
-      for (let campo in curso) {
-        setValue(campo, curso[campo])
+      for (let campo in sala) {
+        setValue(campo, sala[campo])
       }
     }
   }, [])
@@ -28,33 +28,34 @@ import cursoValidator from '../../validadors/cursoValidator';
 
 
     if(params.id){
-      CursoService.update(params.id, dados)
+      SalaService.update(params.id, dados)
     } else {
-      CursoService.create(dados)
+      SalaService.create(dados)
     }
   
-    Navigate('/cursos')
+    Navigate('/salas')
     
   }
 
   return (
     <div>
-      <h1>Curso</h1>
+      <h1>Sala</h1>
 
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label>Nome: </Form.Label>
-          <Form.Control isInvalid={errors.nome } type="text" {...register("nome", cursoValidator.nome)} />
+          <Form.Control isInvalid={errors.nome } type="text" {...register("nome", salaValidator.nome)} />
           {errors.nome && <span>{errors.nome.message}</span>}
         </Form.Group>
-        <Form.Group className="mb-3" controlId="duracao">
-          <Form.Label>Duração: </Form.Label>
-          <Form.Control isInvalid={errors.duracao } type="text" {...register("duracao", cursoValidator.curso)} />
+        <Form.Group className="mb-3" controlId="capacidade">
+          <Form.Label>Capacidade: </Form.Label>
+          <Form.Control isInvalid={errors.capacidade} type="text" {...register("capacidade", salaValidator.capacidade)} />
+          {errors.capacidade && <span>{errors.capacidade.message}</span>}
         </Form.Group>
-        <Form.Group className="mb-3" controlId="modalidade">
-        <Form.Label>Modalidade: </Form.Label>
-          <Form.Control isInvalid={errors.modalidade } type="text" {...register("modalidade", cursoValidator.modalidade)} />
-          {errors.modalidade && <span>{errors.modalidade.message}</span>}
+        <Form.Group className="mb-3" controlId="tipo">
+          <Form.Label>Tipo: </Form.Label>
+          <Form.Control isInvalid={errors.tipo} type="text" {...register("tipo", salaValidator.tipo)} />
+          {errors.tipo && <span>{errors.tipo.message}</span>}
         </Form.Group>
         <div className="text-center">
           <Button onClick={handleSubmit(salvar)} className='btn btn-success'><FaCheck /> Salvar</Button>
@@ -66,4 +67,4 @@ import cursoValidator from '../../validadors/cursoValidator';
   )
 }
 
-export default Cursos
+export default Salas

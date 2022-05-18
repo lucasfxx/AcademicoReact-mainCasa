@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap"
 import { AiTwotoneDelete } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import { FaPlus } from 'react-icons/fa';
+import { BiCool} from 'react-icons/bi';
 import { Link } from "react-router-dom"
 import ProfessorService from "../../services/academico/ProfessorService"
 
@@ -33,7 +34,7 @@ const ProfessorLista = () => {
         <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th><BiCool/></th>
                         <th>Nome</th>
                         <th>Cpf</th>
                         <th>Matricula</th>
@@ -51,7 +52,8 @@ const ProfessorLista = () => {
                 <tbody>
                     {professores.map((item, i) => (
                         <tr key={i}>
-                            <td> <BsPencilFill />{''}
+                            <td>
+                               <Link to={'/professores/' + i}><BsPencilFill /></Link>{''}
 
                             <AiTwotoneDelete onClick={()=>apagar(i)} className='text-danger' />
                             </td>
