@@ -6,6 +6,7 @@ import { BsArrowLeft } from 'react-icons/bs'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import alunoValidator from '../../validadors/alunoValidator';
 import AlunoService from '../../services/academico/AlunoService';
+import { mask } from 'remask';
 
 
 const Alunos = () => {
@@ -19,7 +20,9 @@ const Alunos = () => {
     for (let campo in aluno) {
       setValue(campo, aluno[campo])
     }
+
   }
+  
 }, [])
   function salvar(dados) {
     if(params.id){
@@ -30,6 +33,11 @@ const Alunos = () => {
     Navigate('/alunos')
     
   }
+  function handleChange(event) {
+    const mascara = event.target.getAttribute('mask')
+    setValue(event.target.name, mask(event.target.value, mascara))
+  }
+
   return (
     <div>
       <h1>Alunos</h1>
@@ -42,8 +50,11 @@ const Alunos = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="cpf">
           <Form.Label>CPF: </Form.Label>
-          <Form.Control isInvalid={errors.cpf } type="number" {...register("cpf", alunoValidator.cpf)} />
+          <Form.Control isInvalid={errors.cpf } type="text" 
+          {...register("cpf", alunoValidator.cpf)}
+          mask="999.999.999-99" onChange={handleChange} />
           {errors.cpf && <span>{errors.cpf.message}</span>}
+          
         </Form.Group>
         <Form.Group className="mb-3" controlId="matricula">
           <Form.Label>matricula: </Form.Label>
@@ -57,7 +68,9 @@ const Alunos = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="telefone">
           <Form.Label>telefone: </Form.Label>
-          <Form.Control isInvalid={errors.telefone } type="text" {...register("telefone", alunoValidator.telefone)} />
+          <Form.Control isInvalid={errors.telefone } type="text" 
+          {...register("telefone", alunoValidator.telefone)} 
+          mask="99 99999-9999" onChange={handleChange}/>
           {errors.telefone && <span>{errors.telefone.message}</span>}
         </Form.Group>
         <Form.Group className="mb-3" controlId="cep">
